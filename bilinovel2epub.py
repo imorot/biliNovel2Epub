@@ -399,10 +399,10 @@ def 写到书本(title, 作者, 内容, 封面文件名, 封面文件, 图片路
 
 def 主要():
     
-     下载图片 = True
-     分卷输出 = True
+    下载图片 = True
+    分卷输出 = True
 
-    console.print(简介)
+    
     
     # 解析书籍目录部分,获取URL
     目录 = dict()
