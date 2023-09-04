@@ -395,42 +395,13 @@ def 写到书本(title, 作者, 内容, 封面文件名, 封面文件, 图片路
 
 
 
-下载图片 = 'y'
-分卷输出 = 'y'
+
 
 def 主要():
     
+     下载图片 = True
+     分卷输出 = True
 
-    分卷输出 = False
-    if len(sys.argv) == 1:
-        if Confirm.ask("您未输入任何参数,请选择一个操作 进入交互模式[Y] 查看命令帮助[N] "):
-            书籍ID = str(Prompt.ask("请输入书籍简介页面网址或直接输入书籍ID ")).split("/")[-1].split(".")[0]
-        else:
-            console.print("\n1. 请于命令行中进入到本项目路径\n2. 执行 python3 bilinovel2epub.py BookID \n3. BookID替换为书籍ID或书籍首页链接")
-            os._exit(0)
-    else:
-        书籍ID = str(sys.argv[1]).split("/")[-1].split(".")[0]
-        
-    if Confirm.ask("是否分卷输出文件? 分卷[Y] 单文件[N] ", default='y'):
-        分卷输出 = True
-    else:
-        分卷输出 = False
-    if Confirm.ask("是否下载图片? 下载[Y] 不下载[N] ", default='y'):
-        下载图片 = True
-    else:
-        下载图片 = False
-        # 获得书籍名称
-    书籍首页URL = 基础URL + f"/novel/{书籍ID}.html"
-    soup = BeautifulSoup(session.get(书籍首页URL,headers=HEARDERS).text, "lxml")
-    try:
-        书名 = soup.find("h2",{"class":"book-title"}).text
-        作者 = soup.find("div",{"class":"book-rand-a"}).text[:-2]
-        简介 = soup.find(id = "bookSummary").text
-        封面URL = str(soup.find("img")).split("src=\"")[-1][:-3]
-    except:
-        console.print("您可能输入了错误的URL或ID!", style="rgb(230,58,58)")
-        os._exit(0)
-        
     console.print(简介)
     
     # 解析书籍目录部分,获取URL
