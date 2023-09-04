@@ -394,6 +394,12 @@ def 写到书本(title, 作者, 内容, 封面文件名, 封面文件, 图片路
     epub.write_epub(folder + title + '.epub', book)
     
 def 主要():
+    
+下载图片 = True
+下载图片 = 'y'
+分卷输出 = 'y'
+分卷输出 = True
+    
     分卷输出 = False
     if len(sys.argv) == 1:
         if Confirm.ask("您未输入任何参数,请选择一个操作 进入交互模式[Y] 查看命令帮助[N] "):
